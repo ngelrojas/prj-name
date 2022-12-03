@@ -1,0 +1,19 @@
+SECRET_KEY=this-is-a-test-for-development-environment$
+DEBUG=1
+
+# config db
+# NOTE: the user, password and database in both variables
+# then exactly the same
+
+ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+SQL_ENGINE=django.db.backends.postgresql
+SQL_DATABASE=users
+SQL_USER=user
+SQL_PASSWORD=admin2024
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
+
+POSTGRES_USER=user
+POSTGRES_PASSWORD=admin2024
+POSTGRES_DB=users

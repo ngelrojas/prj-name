@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./app
+    command: python manage.py runserver 0.0.0.0:9001
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 9001:9001
+    env_file:
+      - ./.cot-env
+
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.cot-env
+
+volumes:
+  postgres_data:
