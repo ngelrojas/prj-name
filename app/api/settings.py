@@ -120,8 +120,70 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS CONFIG
+CORS_ALLOW_ALL_ORIGINS = (
+    True 
+)
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]  # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[%(asctime)s.%(msecs)03d]%(levelname)s \
+                    [%(name)s:%(lineno)s] %(message)s",
+            "datefmt": "%d/%b/%Y %H:%M:%S",
+        }
+    },
+    "simple": {"format": "%(levelname)s %(message)s"},
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "filename": "logs/api_application.log",
+            "when": "D",
+            "interval": 1,
+            "backupCount": 40,
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "propagate": True,
+            "level": "INFO",
+        },
+        "app01": {
+            "handlers": ["file"],
+            "level": "INFO",
+        },
+    },
+}
